@@ -1,0 +1,128 @@
+# ============================================
+# CommerceX - .NET / Visual Studio / VS Code
+# ============================================
+
+# Build output
+[Bb]in/
+[Oo]bj/
+
+# Test results
+TestResults/
+[Tt]est[Rr]esults/
+*.trx
+*.coverage
+*.coveragexml
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS Code
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+
+# ============================================
+# OS generated files
+# ============================================
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+
+# ============================================
+# Logs
+# ============================================
+
+*.log
+logs/
+
+# ============================================
+# Local environment / secrets
+# ============================================
+
+.env
+.env.*
+!.env.example
+!.env.template
+
+# Local secret/config overrides
+appsettings.Local.json
+appsettings.Development.Local.json
+appsettings.*.Local.json
+
+# User secrets
+secrets.json
+
+# ============================================
+# Certificates / private keys
+# ============================================
+
+*.pfx
+*.p12
+*.key
+*.pem
+
+# ============================================
+# Docker
+# ============================================
+
+docker-compose.override.yml
+
+# ============================================
+# Local Kubernetes artifacts
+# ============================================
+
+# Local kubeconfig
+.kube/
+
+# Minikube local state
+.minikube/
+
+# ============================================
+# Database / local data
+# ============================================
+
+*.db
+*.sqlite
+*.sqlite3
+
+# Local database dumps
+*.dump
+*.bak
+
+# ============================================
+# Temporary files
+# ============================================
+
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# ============================================
+# Coverage
+# ============================================
+
+coverage/
+.coverage/
