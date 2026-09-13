@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: commercex
+  labels:
+    app.kubernetes.io/part-of: commercex
+    app.kubernetes.io/managed-by: kubectl
