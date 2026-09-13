@@ -1,5 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <ItemGroup>
+    <ProjectReference Include="..\CommerceX.Auth.Application\CommerceX.Auth.Application.csproj" />
+    <ProjectReference Include="..\CommerceX.Auth.Domain\CommerceX.Auth.Domain.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
