@@ -22,6 +22,26 @@ services:
     networks:
       - commercex
 
+  redis:
+    image: redis:7
+    container_name: commercex-redis
+    restart: unless-stopped
+
+    command: redis-server --appendonly yes
+
+    volumes:
+      - redis-data:/data
+
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+    networks:
+      - commercex
+
 networks:
   commercex:
     name: commercex
@@ -29,3 +49,6 @@ networks:
 volumes:
   postgres-data:
     name: commercex-postgres-data
+
+  redis-data:
+    name: commercex-redis-data
