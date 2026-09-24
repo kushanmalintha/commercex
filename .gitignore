@@ -126,3 +126,5 @@ docker-compose.override.yml
 
 coverage/
 .coverage/
+
+auth-migration.sql
