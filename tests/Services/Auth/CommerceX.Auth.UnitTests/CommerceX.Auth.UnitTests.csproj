@@ -18,4 +18,8 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\Services\Auth\CommerceX.Auth.Infrastructure\CommerceX.Auth.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
