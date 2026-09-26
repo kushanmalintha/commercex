@@ -24,6 +24,10 @@ public static class DependencyInjection
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 
         services.AddScoped<
+            IAuthUnitOfWork,
+            AuthUnitOfWork>();
+
+        services.AddScoped<
             ICredentialRepository,
             CredentialRepository>();
 
@@ -43,6 +47,10 @@ public static class DependencyInjection
             ISecureTokenGenerator,
             SecureTokenGenerator>();
 
+        services.AddSingleton<
+            ITokenHasher,
+            TokenHasher>();
+
         services.Configure<JwtOptions>(
             configuration.GetSection(
                 JwtOptions.SectionName));
@@ -50,6 +58,22 @@ public static class DependencyInjection
         services.AddSingleton<
             ITokenService,
             JwtTokenService>();
+
+        services.Configure<RefreshTokenOptions>(
+            configuration.GetSection(
+                RefreshTokenOptions.SectionName));
+
+        services.AddSingleton<
+            IRefreshTokenLifetimeProvider,
+            RefreshTokenLifetimeProvider>();
+
+        services.Configure<PasswordResetTokenOptions>(
+            configuration.GetSection(
+                PasswordResetTokenOptions.SectionName));
+
+        services.AddSingleton<
+            IPasswordResetTokenLifetimeProvider,
+            PasswordResetTokenLifetimeProvider>();
 
         return services;
     }

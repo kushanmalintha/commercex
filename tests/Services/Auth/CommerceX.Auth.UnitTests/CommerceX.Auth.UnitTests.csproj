@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\Services\Auth\CommerceX.Auth.Application\CommerceX.Auth.Application.csproj" />
     <ProjectReference Include="..\..\..\..\src\Services\Auth\CommerceX.Auth.Infrastructure\CommerceX.Auth.Infrastructure.csproj" />
   </ItemGroup>
 
