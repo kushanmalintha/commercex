@@ -43,6 +43,14 @@ public static class DependencyInjection
             ISecureTokenGenerator,
             SecureTokenGenerator>();
 
+        services.Configure<JwtOptions>(
+            configuration.GetSection(
+                JwtOptions.SectionName));
+
+        services.AddSingleton<
+            ITokenService,
+            JwtTokenService>();
+
         return services;
     }
 }
