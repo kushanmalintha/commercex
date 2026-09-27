@@ -4,6 +4,7 @@ using CommerceX.Auth.Application.Abstractions.Persistence;
 using CommerceX.Auth.Application.Abstractions.Security;
 using CommerceX.Auth.Application.Contracts.Registration;
 using CommerceX.Auth.Domain.Entities;
+using CommerceX.Auth.Domain.Enums;
 
 namespace CommerceX.Auth.Application.UseCases.Registration;
 
@@ -31,13 +32,6 @@ public sealed class RegisterUserUseCase : IRegisterUserUseCase
         CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(request);
-
-        if (request.UserId == Guid.Empty)
-        {
-            throw new ArgumentException(
-                "User ID is required.",
-                nameof(request));
-        }
 
         if (string.IsNullOrWhiteSpace(request.Email))
         {
@@ -71,12 +65,15 @@ public sealed class RegisterUserUseCase : IRegisterUserUseCase
 
         DateTimeOffset now = _dateTimeProvider.UtcNow;
 
+        Guid userId = Guid.NewGuid();
+        UserRole role = UserRole.Customer;
+
         Credential credential = new(
             Guid.NewGuid(),
-            request.UserId,
+            userId,
             normalizedEmail,
             passwordHash,
-            request.Role,
+            role,
             now);
 
         await _credentialRepository.AddAsync(

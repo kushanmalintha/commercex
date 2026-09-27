@@ -8,6 +8,8 @@ using CommerceX.Auth.Infrastructure.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using CommerceX.Auth.Infrastructure.Messaging;
+using CommerceX.Auth.Application.Abstractions.Messaging;
 
 namespace CommerceX.Auth.Infrastructure;
 
@@ -74,6 +76,11 @@ public static class DependencyInjection
         services.AddSingleton<
             IPasswordResetTokenLifetimeProvider,
             PasswordResetTokenLifetimeProvider>();
+
+        services.Configure<KafkaOptions>(
+            configuration.GetSection(KafkaOptions.SectionName));
+
+        services.AddSingleton<IAuthEventPublisher, AuthEventPublisher>();
 
         return services;
     }
