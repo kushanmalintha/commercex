@@ -14,17 +14,20 @@ public sealed class RegisterUserUseCase : IRegisterUserUseCase
     private readonly IPasswordHasher _passwordHasher;
     private readonly IDateTimeProvider _dateTimeProvider;
     private readonly IAuthEventPublisher _authEventPublisher;
+    private readonly IAuthUnitOfWork _unitOfWork;
 
     public RegisterUserUseCase(
         ICredentialRepository credentialRepository,
         IPasswordHasher passwordHasher,
         IDateTimeProvider dateTimeProvider,
-        IAuthEventPublisher authEventPublisher)
+        IAuthEventPublisher authEventPublisher,
+        IAuthUnitOfWork unitOfWork)
     {
         _credentialRepository = credentialRepository;
         _passwordHasher = passwordHasher;
         _dateTimeProvider = dateTimeProvider;
         _authEventPublisher = authEventPublisher;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<RegisterUserResponse> ExecuteAsync(
@@ -78,6 +81,9 @@ public sealed class RegisterUserUseCase : IRegisterUserUseCase
 
         await _credentialRepository.AddAsync(
             credential,
+            cancellationToken);
+
+        await _unitOfWork.SaveChangesAsync(
             cancellationToken);
 
         await _authEventPublisher.PublishUserRegisteredAsync(

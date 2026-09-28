@@ -1,26 +1,28 @@
 using CommerceX.Auth.Application;
 using CommerceX.Auth.Infrastructure;
+using CommerceX.Auth.Api.ExceptionHandling;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Register Auth Service application layer.
+builder.Services.AddControllers();
 builder.Services.AddAuthApplication();
-
-// Register Auth Service infrastructure.
 builder.Services.AddAuthInfrastructure(builder.Configuration);
-
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+builder.Services.AddControllers();
+builder.Services.AddProblemDetails();
+builder.Services.AddExceptionHandler<ApiExceptionHandler>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+app.UseExceptionHandler();
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
 
 app.UseHttpsRedirection();
+
+app.MapControllers();
 
 app.Run();
